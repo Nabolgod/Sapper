@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сапёр</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+</head>
+
+<body>
+    <main class="game">
+        <h1 class="game__title">Сапёр</h1>
+
+        <!-- Панель игры: выбор сложности, счётчик мин, кнопка, таймер -->
+        <div class="panel">
+            <select id="difficulty">
+                <option value="easy">Новичок 9×9</option>
+                <option value="medium">Любитель 16×16</option>
+                <option value="hard">Профи 16×30</option>
+            </select>
+            <span id="mines-counter">010</span>
+            <button id="new-game" type="button">Новая игра</button>
+            <span id="timer">000</span>
+        </div>
+
+        <!-- Игровое поле: клетки сюда добавляет board.js (Матвей) -->
+        <div id="board"></div>
+    </main>
+
+    <script src="js/game.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/touch.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
