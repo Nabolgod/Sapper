@@ -111,3 +111,40 @@ function openCell(row, col) {
     }
   }
 }
+
+
+// --- Флажки, победа и поражение ---
+
+// Ставит или снимает флажок на закрытой клетке
+function toggleFlag(row, col) {
+  if (game.state === 'won' || game.state === 'lost') return;
+  const cell = game.cells[row][col];
+  if (cell.open) return;
+  cell.flag = !cell.flag;
+  game.flags += cell.flag ? 1 : -1;
+}
+
+// Проверяет победу: открыты все клетки без мин
+function checkWin() {
+  if (game.state !== 'playing') return;
+  if (game.opened === game.rows * game.cols - game.mines) {
+    game.state = 'won';
+    for (const line of game.cells) {
+      for (const cell of line) {
+        if (cell.mine && !cell.flag) {
+          cell.flag = true;
+          game.flags++;
+        }
+      }
+    }
+  }
+}
+
+// После поражения показывает все мины
+function revealMines() {
+  for (const line of game.cells) {
+    for (const cell of line) {
+      if (cell.mine) cell.open = true;
+    }
+  }
+}
