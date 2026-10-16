@@ -61,3 +61,12 @@ document.addEventListener('sapper:update', updatePanel);
 newGameBtn.addEventListener('click', function () {
     startGame();
 });
+
+// --- Выбор уровня сложности ---
+
+const difficultyEl = document.getElementById('difficulty');
+
+// При смене уровня сразу начинаем новую игру
+difficultyEl.addEventListener('change', function () {
+    startGame();
+});
