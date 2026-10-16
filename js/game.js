@@ -80,3 +80,34 @@ function countMines() {
     }
   }
 }
+
+
+// --- Открытие клеток и авто-раскрытие ---
+
+// Открывает клетку. Если вокруг неё нет мин — по цепочке открывает соседей
+function openCell(row, col) {
+  if (game.state === 'won' || game.state === 'lost') return;
+  const start = game.cells[row][col];
+  if (start.open || start.flag) return;
+
+  if (game.state === 'ready') game.state = 'playing';
+
+  if (start.mine) {
+    start.open = true;
+    game.state = 'lost';
+    return;
+  }
+
+  const queue = [start];
+  while (queue.length > 0) {
+    const cell = queue.shift();
+    if (cell.open || cell.flag) continue;
+    cell.open = true;
+    game.opened++;
+    if (cell.count === 0) {
+      for (const n of getNeighbors(cell.row, cell.col)) {
+        if (!n.open && !n.flag && !n.mine) queue.push(n);
+      }
+    }
+  }
+}
