@@ -1,1 +1,87 @@
-/* style.css — основной вид игры: цвета, шрифты, клетки, цифры. Автор: Данил Корчагин */
+/* style.css — основной вид игры: цвета, шрифты, клетки, цифры. Автор: Данил Корчагин *//* style.css — основной вид игры: цвета, шрифты, клетки, цифры. Автор: Данил Корчагин */
+
+/* --- Цвета и размеры --- */
+:root {
+  --bg: #1f2933;
+  --panel: #323f4b;
+  --text: #f5f7fa;
+  --accent: #3ebd93;
+  --cell-closed: #9aa5b1;
+  --cell-closed-hover: #b6c0ca;
+  --cell-open: #e4e7eb;
+  --cell-size: 32px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px;
+  max-width: 100%;
+}
+
+.game__title {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+/* --- Панель игры --- */
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--panel);
+  border-radius: 10px;
+}
+
+#mines-counter,
+#timer {
+  min-width: 56px;
+  padding: 4px 8px;
+  background: #000;
+  color: #ff4d4d;
+  font-family: 'Courier New', monospace;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px;
+}
+
+#new-game,
+#difficulty {
+  padding: 8px 14px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#new-game {
+  background: var(--accent);
+  color: #fff;
+  font-weight: bold;
+}
+
+#new-game:hover {
+  filter: brightness(1.1);
+}
