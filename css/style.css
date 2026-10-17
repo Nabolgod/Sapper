@@ -85,3 +85,64 @@ body {
 #new-game:hover {
   filter: brightness(1.1);
 }
+/* --- Игровое поле --- */
+#board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 9), var(--cell-size));
+  gap: 2px;
+  padding: 8px;
+  background: var(--panel);
+  border-radius: 10px;
+  user-select: none;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cell-closed);
+  border-radius: 4px;
+  font-size: calc(var(--cell-size) * 0.55);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background: var(--cell-closed-hover);
+}
+
+/* Открытая клетка */
+.cell.open {
+  background: var(--cell-open);
+  cursor: default;
+}
+
+/* Цифра — сколько мин вокруг */
+.cell.open[data-count]::after {
+  content: attr(data-count);
+}
+
+.cell[data-count="1"] { color: #1e64d8; }
+.cell[data-count="2"] { color: #2a9134; }
+.cell[data-count="3"] { color: #d62828; }
+.cell[data-count="4"] { color: #283593; }
+.cell[data-count="5"] { color: #8b1a1a; }
+.cell[data-count="6"] { color: #00838f; }
+.cell[data-count="7"] { color: #212121; }
+.cell[data-count="8"] { color: #757575; }
+
+/* Флажок */
+.cell.flag::after {
+  content: '🚩';
+}
+
+/* Мина */
+.cell.mine {
+  background: #ef4e4e;
+}
+
+.cell.mine::after {
+  content: '💣';
+}
