@@ -1,1 +1,40 @@
 /* adaptive.css — адаптация под ПК, планшет и телефон. Автор: Данил Корчагин */
+
+/* --- ПК: от 1200 px --- */
+@media (min-width: 1200px) {
+  .game {
+    padding-top: 40px;
+  }
+
+  .game__title {
+    font-size: 40px;
+  }
+}
+
+/* Ноутбуки: 1200–1439 px (например, 1280 и 1366) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  :root {
+    --cell-size: 30px;
+  }
+}
+
+/* Большие мониторы: от 1920 px */
+@media (min-width: 1920px) {
+  :root {
+    --cell-size: 40px;
+  }
+
+  .game__title {
+    font-size: 48px;
+  }
+
+  .panel {
+    gap: 20px;
+    padding: 14px 20px;
+  }
+
+  #mines-counter,
+  #timer {
+    font-size: 28px;
+  }
+}
