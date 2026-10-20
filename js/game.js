@@ -94,6 +94,7 @@ function openCell(row, col) {
 
   if (start.mine) {
     start.open = true;
+    start.exploded = true;
     game.state = 'lost';
     return;
   }
