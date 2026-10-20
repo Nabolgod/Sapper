@@ -146,3 +146,10 @@ body {
 .cell.mine::after {
   content: '💣';
 }
+
+/* Удобство на сенсорных экранах */
+#board {
+  -webkit-touch-callout: none;   /* без системного меню при долгом нажатии (iPhone) */
+  -webkit-user-select: none;
+  touch-action: manipulation;    /* без масштабирования двойным тапом */
+}
