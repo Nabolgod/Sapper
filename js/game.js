@@ -90,7 +90,7 @@ function openCell(row, col) {
   const start = game.cells[row][col];
   if (start.open || start.flag) return;
 
-  if (game.state === 'ready') game.state = 'playing';
+  if (game.state === 'ready') startFirstMove(row, col);
 
   if (start.mine) {
     start.open = true;
@@ -147,4 +147,31 @@ function revealMines() {
       if (cell.mine) cell.open = true;
     }
   }
+}
+
+// --- Безопасный первый ход ---
+
+// Первый ход: убираем мины с клетки и её соседей и расставляем их заново в другом месте.
+// Так первый клик всегда открывает свободную область.
+function startFirstMove(row, col) {
+    const safeZone = [game.cells[row][col]].concat(getNeighbors(row, col));
+
+// Снимаем все мины
+    for (const line of game.cells) {
+        for (const cell of line) cell.mine = false;
+    }
+
+    // Расставляем заново, обходя безопасную зону
+    let placed = 0;
+    while (placed < game.mines) {
+        const r = Math.floor(Math.random() * game.rows);
+        const c = Math.floor(Math.random() * game.cols);
+        const cell = game.cells[r][c];
+        if (!cell.mine && !safeZone.includes(cell)) {
+            cell.mine = true;
+            placed++;
+        }
+    }
+    countMines();
+    game.state = 'playing';
 }
