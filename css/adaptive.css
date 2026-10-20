@@ -38,3 +38,22 @@
     font-size: 28px;
   }
 }
+/* Планшет: 768–1199 px*/
+@media (min-width: 768px) and (max-width: 1199px) {
+
+  /* Размер клетки подстраивается под ширину экрана и число столбцов (от 22 до 40 px) */
+  #board {
+    --cell-size: clamp(22px, calc((100vw - 64px) / var(--cols) - 2px), 40px);
+  }
+
+  .game__title {
+    font-size: 36px;
+  }
+
+  /* Крупнее элементы панели (удобнее нажимать пальцем) */
+  #new-game,
+  #difficulty {
+    padding: 10px 16px;
+    font-size: 17px;
+  }
+}
