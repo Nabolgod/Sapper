@@ -27,6 +27,7 @@ function updateCell(cell) {
     el.classList.add('open');
     if (cell.mine) {
       el.classList.add('mine');
+      if (cell.exploded) el.classList.add('boom');
     } else if (cell.count > 0) {
       el.dataset.count = cell.count;
     }
