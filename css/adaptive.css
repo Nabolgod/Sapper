@@ -38,3 +38,67 @@
     font-size: 28px;
   }
 }
+/* Планшет: 768–1199 px*/
+@media (min-width: 768px) and (max-width: 1199px) {
+
+  /* Размер клетки подстраивается под ширину экрана и число столбцов (от 22 до 40 px) */
+  #board {
+    --cell-size: clamp(22px, calc((100vw - 64px) / var(--cols) - 2px), 40px);
+  }
+
+  .game__title {
+    font-size: 36px;
+  }
+
+  /* Крупнее элементы панели (удобнее нажимать пальцем) */
+  #new-game,
+  #difficulty {
+    padding: 10px 16px;
+    font-size: 17px;
+  }
+}
+
+/* Телефон: до 767 px */
+@media (max-width: 767px) {
+  .game {
+    width: 100%;
+    gap: 12px;
+    padding: 16px 8px;
+  }
+
+  .game__title {
+    font-size: 26px;
+  }
+
+  .panel {
+    width: 100%;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  /* Выбор сложности — на всю ширину отдельной строкой */
+  #difficulty {
+    flex-basis: 100%;
+    font-size: 16px;
+  }
+
+  #new-game {
+    flex: 1;
+    font-size: 14px;
+  }
+
+  #mines-counter,
+  #timer {
+    font-size: 18px;
+    min-width: 48px;
+  }
+
+  /* Клетки не меньше 26 px, чтобы попадать пальцем.
+     Если поле не помещается — его можно прокрутить в сторону */
+  #board {
+    --cell-size: clamp(26px, calc((100vw - 40px) / var(--cols) - 2px), 40px);
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 6px;
+  }
+}
