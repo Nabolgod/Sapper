@@ -28,6 +28,15 @@
         <!-- Игровое поле: клетки сюда добавляет board.js (Матвей) -->
         <div id="board"></div>
     </main>
+    <!-- Окно результата: появляется после победы или проигрыша -->
+    <div id="result" class="modal" hidden>
+        <div class="modal__box">
+            <h2 id="result-title" class="modal__title"></h2>
+            <p id="result-text" class="modal__text"></p>
+            <button id="result-again" class="modal__button" type="button">Играть
+                ещё</button>
+        </div>
+    </div>
 
     <script src="js/game.js"></script>
     <script src="js/board.js"></script>
