@@ -70,3 +70,54 @@ const difficultyEl = document.getElementById('difficulty');
 difficultyEl.addEventListener('change', function () {
     startGame();
 });
+
+// --- Окно результата (победа / проигрыш) ---
+
+const resultEl = document.getElementById('result');
+const resultTitleEl = document.getElementById('result-title');
+const resultTextEl = document.getElementById('result-text');
+const resultAgainBtn = document.getElementById('result-again');
+
+let resultShown = false; // окно уже показывали в этой игре
+
+// Показывает окно с итогом игры
+function showResult() {
+    if (game.state === 'won') {
+        resultTitleEl.textContent = 'Победа!';
+        resultTextEl.textContent = 'Все мины найдены за ' + seconds + ' сек.';
+    } else if (game.state === 'lost') {
+        resultTitleEl.textContent = 'Проигрыш';
+        resultTextEl.textContent = 'Вы подорвались на мине. Попробуйте ещё раз!';
+    } else {
+        return; // игра уже перезапущена — окно не нужно
+    }
+    resultEl.hidden = false;
+}
+
+// Прячет окно
+function hideResult() {
+    resultEl.hidden = true;
+}
+
+// Следим за игрой: после победы или проигрыша показываем окно (с паузой, чтобы было видно поле)
+document.addEventListener('sapper:update', function () {
+    if (game.state === 'ready') {
+        resultShown = false;
+        hideResult();
+    }
+    if ((game.state === 'won' || game.state === 'lost') && !resultShown) {
+        resultShown = true;
+        setTimeout(showResult, 600);
+    }
+});
+
+// Кнопка «Играть ещё»
+resultAgainBtn.addEventListener('click', function () {
+    hideResult();
+    startGame();
+});
+
+// Клик по тёмному фону закрывает окно — можно рассмотреть поле
+resultEl.addEventListener('click', function (event) {
+    if (event.target === resultEl) hideResult();
+});
