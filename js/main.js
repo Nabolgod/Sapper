@@ -13,3 +13,10 @@ function startGame() {
 
 // Запускаем игру сразу при открытии страницы
 startGame();
+
+// --- Мобильное приложение: работа без интернета ---
+// Подключаем service-worker.js (его пишет Матвей). 
+// Работает только на сайте (https), а не при открытии файла с диска.
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('service-worker.js');
+}
