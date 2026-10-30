@@ -1,6 +1,6 @@
 /* style.css — основной вид игры: цвета, шрифты, клетки, цифры. Автор: Данил Корчагин *//* style.css — основной вид игры: цвета, шрифты, клетки, цифры. Автор: Данил Корчагин */
 
-/* --- Цвета и размеры --- */
+/*Цвета и размеры общак*/
 :root {
   --bg: #1f2933;
   --panel: #323f4b;
@@ -160,7 +160,7 @@ body {
   box-shadow: inset 0 0 0 3px #ffd54f;
 }
 
-/* --- Окно результата (победа / проигрыш) --- */
+/* Окно результата (победа / проигрыш)*/
 .modal {
   position: fixed;
   inset: 0;
@@ -211,4 +211,17 @@ body {
 
 .modal__button:hover {
   filter: brightness(1.1);
+}
+
+/*Режим приложения (игра запущена с рабочего стола)*/
+@media (display-mode: standalone) {
+  body {
+    /* Отступы, чтобы игра не залезала под «чёлку» и полоску жестов телефона */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    /* Без выделения текста и «резинки» при прокрутке - как в настоящем приложении */
+    -webkit-user-select: none;
+    user-select: none;
+    overscroll-behavior: none;
+  }
 }
